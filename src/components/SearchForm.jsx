@@ -18,7 +18,10 @@ export function SearchForm() {
           placeholder="Search any store"
           name="search"
         />
-        <button className="capitalize " type="submit">
+        <button
+          className="capitalize px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
+          type="submit"
+        >
           go
         </button>
       </form>
