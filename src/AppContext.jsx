@@ -48,7 +48,7 @@ export function AppContext({ children }) {
     setSearchInput(newSearchInput);
   }
   return (
-    <GlobalContext.Provider value={{ onSearchStore, searchInput }}>
+    <GlobalContext.Provider value={{ onSearchStore, searchInput, locations,  }}>
       {children}
     </GlobalContext.Provider>
   );
