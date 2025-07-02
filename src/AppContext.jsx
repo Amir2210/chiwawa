@@ -8,6 +8,7 @@ export const useGlobalContext = () => {
 
 export function AppContext({ children }) {
   const [searchInput, setSearchInput] = useState("");
+  const [selectedStoreLocation, setSelectedStoreLocation] = useState(null)
   const [locations, setLocations] = useState([
     {
       id: 1,
@@ -48,11 +49,16 @@ export function AppContext({ children }) {
     setSearchInput(newSearchInput);
   }
 
+  function onSelectStoreLocation(location) {
+    const newSelectedStoreLocation = location
+    setSelectedStoreLocation(newSelectedStoreLocation);
+      }
+
     const filteredLocations = locations.filter((loc) =>
     loc.StoreName.toLowerCase().includes(searchInput.toLowerCase())
   );
   return (
-    <GlobalContext.Provider value={{ onSearchStore, searchInput, locations,  filteredLocations}}>
+    <GlobalContext.Provider value={{ onSearchStore, searchInput, locations,  filteredLocations, selectedStoreLocation, onSelectStoreLocation}}>
       {children}
     </GlobalContext.Provider>
   );

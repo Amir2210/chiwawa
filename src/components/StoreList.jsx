@@ -1,12 +1,8 @@
-import { useState } from "react"
-import { useGlobalContext } from "../AppContext"
+import { useGlobalContext } from "../AppContext";
 
 export function StoreLists() {
-  const { filteredLocations } = useGlobalContext()
-  const [selected, setSelected] = useState(null)
-  const onSelect = (loc) => {
-    setSelected(loc)
-  }
+  const { filteredLocations, onSelectStoreLocation, selectedStoreLocation } =
+    useGlobalContext();
   return (
     <ul className="overflow-y-auto flex-1">
       {filteredLocations.length === 0 && (
@@ -15,9 +11,9 @@ export function StoreLists() {
       {filteredLocations.map((loc) => (
         <li
           key={loc.id}
-          onClick={() => onSelect(loc)}
+          onClick={() => onSelectStoreLocation(loc)}
           className={`cursor-pointer capitalize p-2 rounded mb-2 transition-colors ${
-            selected && selected.id === loc.id
+            selectedStoreLocation && selectedStoreLocation.id === loc.id
               ? "bg-blue-100 hover:bg-blue-200 text-blue-700 font-bold"
               : "bg-gray-100 hover:bg-gray-200 text-gray-700"
           }`}
@@ -26,5 +22,5 @@ export function StoreLists() {
         </li>
       ))}
     </ul>
-  )
+  );
 }
