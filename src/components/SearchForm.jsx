@@ -1,17 +1,15 @@
-import { useGlobalContext } from "../AppContext"
+import { useGlobalContext } from "../AppContext";
 export function SearchForm() {
-  const { onSearchStore } = useGlobalContext()
+  const { onSearchStore } = useGlobalContext();
 
   function handleSubmit(ev) {
-    ev.preventDefault()
-    const searchValue = ev.target.elements.search.value
-    onSearchStore(searchValue)
-
-    
+    ev.preventDefault();
+    const searchValue = ev.target.elements.search.value;
+    onSearchStore(searchValue);
   }
   return (
     <section>
-      <form className="container mx-auto gap-4 p-4" onSubmit={handleSubmit}>
+      <form className="container mx-auto gap-4 " onSubmit={handleSubmit}>
         <input
           className="mb-4 p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
           type="text"
@@ -26,5 +24,5 @@ export function SearchForm() {
         </button>
       </form>
     </section>
-  )
+  );
 }

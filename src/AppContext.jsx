@@ -1,14 +1,15 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react"
 
-const GlobalContext = createContext();
+const GlobalContext = createContext()
 
 export const useGlobalContext = () => {
-  return useContext(GlobalContext);
-};
+  return useContext(GlobalContext)
+}
 
 export function AppContext({ children }) {
-  const [searchInput, setSearchInput] = useState("");
+  const [searchInput, setSearchInput] = useState("")
   const [selectedStoreLocation, setSelectedStoreLocation] = useState(null)
+  const [sortBy, setSortBy] = useState("StoreName")
   const [locations, setLocations] = useState([
     {
       id: 1,
@@ -42,24 +43,36 @@ export function AppContext({ children }) {
       StoreName: "walter, moen and mohr",
       ZipCode: "33-4567",
     },
-  ]);
+  ])
+  const [filteredLocations, setFilteredLocations] = useState(locations)
+
+  useEffect(() => {
+    let filtered = locations.filter((loc) =>
+      loc.StoreName.toLowerCase().includes(searchInput.toLowerCase())
+    )
+    if (sortBy === "asc") {
+      filtered = filtered.sort((a, b) => a.StoreName.localeCompare(b.StoreName))
+    } else if (sortBy === "desc") {
+      filtered = filtered.sort((a, b) => b.StoreName.localeCompare(a.StoreName))
+    }
+    setFilteredLocations(filtered)
+  }, [locations, searchInput, sortBy])
 
   function onSearchStore(input) {
-    const newSearchInput = input;
-    setSearchInput(newSearchInput);
+    setSearchInput(input)
+  }
+
+  function onSetSort(sortBy) {
+    setSortBy(sortBy)
   }
 
   function onSelectStoreLocation(location) {
-    const newSelectedStoreLocation = location
-    setSelectedStoreLocation(newSelectedStoreLocation);
-      }
+    setSelectedStoreLocation(location)
+  }
 
-    const filteredLocations = locations.filter((loc) =>
-    loc.StoreName.toLowerCase().includes(searchInput.toLowerCase())
-  );
   return (
-    <GlobalContext.Provider value={{ onSearchStore, searchInput, locations,  filteredLocations, selectedStoreLocation, onSelectStoreLocation}}>
+    <GlobalContext.Provider value={{ onSearchStore, searchInput, locations, filteredLocations, selectedStoreLocation, onSelectStoreLocation, onSetSort }}>
       {children}
     </GlobalContext.Provider>
-  );
+  )
 }

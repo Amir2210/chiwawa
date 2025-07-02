@@ -3,6 +3,7 @@ import { useGlobalContext } from "../AppContext";
 export function StoreLists() {
   const { filteredLocations, onSelectStoreLocation, selectedStoreLocation } =
     useGlobalContext();
+    
   return (
     <ul className="overflow-y-auto flex-1">
       {filteredLocations.length === 0 && (
