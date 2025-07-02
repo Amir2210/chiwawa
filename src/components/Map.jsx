@@ -25,7 +25,10 @@ export function Map() {
         />
         {locations.map((loc) => (
           <Marker key={loc.id} position={[loc.Latitude, loc.Longitude]}>
-            <Popup>{loc.name}</Popup>
+            <Popup>
+              <p>Store Name: {loc.StoreName}</p>
+              <p>Adress (ZipCode): {loc.ZipCode}</p>
+            </Popup>
           </Marker>
         ))}
         {/* <MapClick setLocations={setLocations} />
