@@ -1,7 +1,9 @@
+import { MainHeader } from "./components/MainHeader";
+
 function App() {
   return (
     <>
-      <h1 className="text-xl text-red-400">hello</h1>
+      <MainHeader />
     </>
   );
 }
