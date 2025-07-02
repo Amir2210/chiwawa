@@ -1,11 +1,13 @@
-import { useGlobalContext } from "../AppContext";
+import { useGlobalContext } from "../AppContext"
 export function SearchForm() {
-  const { onSearchStore } = useGlobalContext();
+  const { onSearchStore } = useGlobalContext()
 
   function handleSubmit(ev) {
-    ev.preventDefault();
-    const searchValue = ev.target.elements.search.value;
-    onSearchStore(searchValue);
+    ev.preventDefault()
+    const searchValue = ev.target.elements.search.value
+    onSearchStore(searchValue)
+
+    
   }
   return (
     <section>
@@ -21,5 +23,5 @@ export function SearchForm() {
         </button>
       </form>
     </section>
-  );
+  )
 }

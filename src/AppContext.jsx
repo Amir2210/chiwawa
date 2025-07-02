@@ -47,8 +47,12 @@ export function AppContext({ children }) {
     const newSearchInput = input;
     setSearchInput(newSearchInput);
   }
+
+    const filteredLocations = locations.filter((loc) =>
+    loc.StoreName.toLowerCase().includes(searchInput.toLowerCase())
+  );
   return (
-    <GlobalContext.Provider value={{ onSearchStore, searchInput, locations,  }}>
+    <GlobalContext.Provider value={{ onSearchStore, searchInput, locations,  filteredLocations}}>
       {children}
     </GlobalContext.Provider>
   );
