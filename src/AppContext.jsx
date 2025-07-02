@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContextnp, useState } from "react";
 
 const GlobalContext = createContext();
 
