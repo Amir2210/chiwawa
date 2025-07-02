@@ -1,3 +1,9 @@
+import { SearchForm } from "./SearchForm";
+
 export function MainHeader() {
-  return <header>im header</header>;
+  return (
+    <header>
+      <SearchForm />
+    </header>
+  );
 }
